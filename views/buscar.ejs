@@ -1,0 +1,27 @@
+<% include partials/_header %>
+        <nav class="navbar mavbar-dark bg-dark mb-4">
+            <a href="/users" class="navbar-brand">SiB</a>
+                    <a href="/" class="navbar-brand pull-right">Logout</a>
+        </nav>
+        <div class="container-fluid">
+<div class="col-sm-12">
+        <div class="card">
+                <div class="card-body">
+                        <h5 class="card-title">Buscar usuario</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Ingresa nombre de usuario</h6>
+<form action="/users/buscar" method="GET">
+<div class="form-group">
+<input type="text" name="name" value="<%= name %>" placeholder="Insert name" class="form-control" />
+</div>
+<!--<button type="submit" class="btn btn-primary btn-block">Add</button>-->
+</form>
+<ul class="list-group">
+        <% for (var i= 0; i<users.length; i++){ %>
+        <li class="list-group-item"><%= users[i].name %>, <%= users[i].email %></li>
+        <% } %>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<% include partials/_footer %>

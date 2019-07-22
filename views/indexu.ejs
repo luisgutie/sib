@@ -1,0 +1,66 @@
+<% include partials/_header %>
+        <nav class="navbar mavbar-dark bg-dark mb-4">
+            <a href="/users" class="navbar-brand">SiB</a>
+            <a href="/users/buscar" class="navbar-brand">Buscar</a>
+                    <a href="/" class="navbar-brand pull-right">Logout</a>
+        </nav>
+        <div class="container-fluid">
+                <% if (locals.success) { %>
+                <div class="alert alert-primary" role="alert">
+                        Accion exitosa</div>
+                        <% } %>
+                <div class="row">
+                        <div class="col-sm-4">
+                                <div class="card">
+                                        <div class="card-body">
+                                                <h5 class="card-title">Nuevo usuario</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">Llena los campos</h6>
+            <form action="/users/create" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Insert name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="user_name" placeholder="Insert username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Insert email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="password" placeholder="Insert password" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add</button>
+            </form>
+        </div>
+    </div>
+            </div>
+            <div class="col-sm-8">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i= 0; i<users.length; i++){ %>
+                        <tr>
+                            <td><%= i+1  %></td>
+                                <td><%= users[i].name  %></td>
+                                <td><%= users[i].user_name  %></td>
+                                <td><%= users[i].email  %></td>
+                                <td><%= users[i].password  %></td>
+                                <td><a href="/users/<%= users[i]._id  %>/turn" class="btn btn-success"><%= users[i].active ? 'Activado':'Desactivado'  %></a>
+                                    <a href="/users/<%= users[i]._id  %>/edit" class="btn btn-info">Editar</a>
+                                    <a href="/users/<%= users[i]._id  %>/delete?_method=DELETE" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+        <% include partials/_footer %>
